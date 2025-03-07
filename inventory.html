@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Page</title>
+
+    <!-- Google Font: Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Full Page Styling */
+        body {
+            background-color: black;
+            margin: 15px;
+            padding: 20px;
+            border: 3px solid white;
+            position: relative;
+            color: white;
+            font-family: 'Merriweather', serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Inventory Heading */
+        .inventory-heading {
+            font-size: 42px;
+            font-weight: bold;
+            color: gray;
+            text-transform: uppercase;
+            background-color: white;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 15px;
+            left: 0;
+        }
+
+        /* Common Button Styling */
+        .button-container, .stock-button-container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stock-button-container {
+            left: 20px;
+        }
+
+        .button-container {
+            right: 20px;
+            align-items: flex-end;
+        }
+
+        .button-label {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background-color: cyan;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .button-label:hover {
+            background-color: lightcyan;
+        }
+
+        /* Circular Buttons */
+        .circle-button {
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            outline: none;
+            color: black;
+            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            max-width: 600px;
+            height: 60%;
+            max-height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+            z-index: 1000;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: black;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: red;
+        }
+
+        iframe {
+            width: 100%;
+            height: 90%;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Inventory Heading -->
+    <div class="inventory-heading">INVENTORY</div>
+
+    <!-- Update Stock (Left Aligned, Consistent Style) -->
+    <div class="stock-button-container">
+        <div class="button-label" onclick="openStockModal()">
+            Update Stock
+            <button class="circle-button">+</button>
+        </div>
+    </div>
+
+    <!-- Buttons & Labels Container (Right Aligned, Consistent Style) -->
+    <div class="button-container">
+        <!-- View Inventory -->
+        <div class="button-label" onclick="openModal('praxy.html')">
+            View Inventory
+            <button class="circle-button">+</button>
+        </div>
+
+        <!-- View Tool Stock -->
+        <div class="button-label" onclick="openModal('searchbar1.html')">
+            View Tool Stock
+            <button class="circle-button">+</button>
+        </div>
+    </div>
+
+    <!-- Modal Window for View Inventory / Tool Stock -->
+    <div id="modal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <iframe id="iframe-content" src=""></iframe>
+    </div>
+
+    <!-- Modal Window for Update Stock -->
+    <div id="stock-modal" class="modal">
+        <span class="close-btn" onclick="closeStockModal()">&times;</span>
+        <iframe id="stock-iframe" src="update.html"></iframe>
+    </div>
+
+    <script>
+        function openModal(page) {
+            document.getElementById("iframe-content").src = page;
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+            document.getElementById("iframe-content").src = "";
+        }
+
+        function openStockModal() {
+            document.getElementById("stock-modal").style.display = "block";
+        }
+
+        function closeStockModal() {
+            document.getElementById("stock-modal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
